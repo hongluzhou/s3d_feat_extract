@@ -1,0 +1,13 @@
+time python main/wikihow_step_feature_extraction.py --n_display=10 \
+       --batch_size=8 \
+       --num_workers=-1 --cudnn_benchmark=0 --pin_memory \
+       --max_words=16 \
+       --early_stop=0 \
+       --early_stop_bid=10 \
+       --wikihow_subset=1 \
+       --s3d_dict_path=/export/home/code/ginst/howto100m/ginst-HowTo100M-Feat_Extract/checkpoint/s3d_dict.npy \
+       --s3d_howto100m_path=/export/home/code/ginst/howto100m/ginst-HowTo100M-Feat_Extract/checkpoint/s3d_howto100m.pth \
+       --token_to_word_path=/export/home/code/ginst/howto100m/ginst-HowTo100M-Feat_Extract/data/dict.npy \
+       --feat_save_root=/export/home/data/wikihow/wikihow_subset/debug_s3d_text_feat \
+       --log_root=./logs \
+       --log_filename=wikihow_step_feature_extraction
