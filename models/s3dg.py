@@ -340,7 +340,7 @@ class S3D(nn.Module):
             return {'video_embedding': self.fc(net)}
     
     
-    def forward(self, video, text, mode='all', mixed5c=True, raw_text=False):
+    def forward(self, video, text=None, mode='all', mixed5c=True, raw_text=False):
         if mode == 'all':
             return self.forward_video(video, mixed5c=mixed5c), self.text_module(text, raw_text=raw_text)
         elif mode == 'video':
