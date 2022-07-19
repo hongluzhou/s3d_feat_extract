@@ -13,7 +13,7 @@ import torch.backends.cudnn as cudnn
 from torch.utils.data import DataLoader
 
 from models import s3dg
-from datasets.crosstask.crosstask_video_loader import CrossTask_DataLoader
+from datasets.coin.coin_video_loader import COIN_DataLoader
 from utils.common_utils import log
 
 
@@ -23,11 +23,11 @@ import pdb
 
 def get_args(
     description = \
-        'Feature extraction for CrossTask using S3D model trained with MIL-NCE.'):
+        'Feature extraction for COIN using S3D model trained with MIL-NCE.'):
     
     parser = argparse.ArgumentParser(description=description)
     parser.add_argument('--video_id_file', type=str,
-                        default='CrossTask/video_ids.pickle', 
+                        default='annotations/COIN.json', 
                         help='pickle file that stores video ids and paths')
     parser.add_argument('--video_path', type=str,
                         default='', help='video dir')
@@ -42,7 +42,7 @@ def get_args(
                         default='data/dict.npy', help='path to token_to_word dict')
     
     parser.add_argument('--feat_save_root', type=str,
-                        default='/export/home/data/crosstask/feats',
+                        default='/export/home/data/coin/feats',
                         help='feature save dir')
     parser.add_argument('--log_root', type=str,
                         default='./log', help='log save dir')
@@ -135,7 +135,7 @@ def main_worker(ngpus_per_node, args):
         model, device_ids=[int(i) for i in range(ngpus_per_node)]).cuda()
     
     # Data loading code
-    dataset = CrossTask_DataLoader(
+    dataset = COIN_DataLoader(
         args=args,
         video_id_file=args.video_id_file,
         video_root=args.video_path,
